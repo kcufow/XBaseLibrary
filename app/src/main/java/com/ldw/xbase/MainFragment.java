@@ -11,7 +11,7 @@ import com.ldw.xbaselibrary.baseui.XBaseFragment;
 public class MainFragment extends XBaseFragment {
     @Override
     public void initView() {
-        
+
     }
 
     @Override
