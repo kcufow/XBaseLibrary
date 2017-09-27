@@ -1,26 +1,27 @@
 package com.ldw.xbaselibrary.net;
 
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.builder.GetBuilder;
-import com.zhy.http.okhttp.builder.PostFormBuilder;
-import com.zhy.http.okhttp.callback.Callback;
+import android.text.TextUtils;
+
 
 import java.util.Map;
 
-import okhttp3.OkHttpClient;
 
 /**
  * Created by ldw on 2017/9/12.
  */
 
-public class NetManager {
+public class NetManager implements Net<Object> {
     private static NetManager netManager = null;
+    Net net = new OkHttpNet();
         private NetManager(){
 
         }
 
-    public static NetManager init(OkHttpClient okHttpClient){
-        OkHttpUtils.initClient(okHttpClient);
+    public void setRequestType(Net net){
+        this.net = net;
+    }
+
+    public static NetManager getInstance(){
         if (netManager==null){
             synchronized (NetManager.class){
 
@@ -34,24 +35,21 @@ public class NetManager {
         return netManager;
 
     }
-    public static NetManager getInstance(){
-        return init(null);
+
+    /**
+     * post请求
+     * @param url
+     * @param params
+     * @param callback 相应的callback
+     */
+
+    public  void post(String url, Map<String ,String> params,Object callback){
+
+        net.post(url,params, callback);
+
+
     }
-
-    public static void post(String url, Map<String ,String> params, Callback callback){
-        PostFormBuilder builder = OkHttpUtils.post().url(url);
-
-        for (String s :params.keySet()){
-            builder.addParams(s,params.get(s));
-        }
-        builder.build().execute(callback);
-    }
-    public static void get(String url, Map<String ,String> params,Callback callback){
-        GetBuilder builder= OkHttpUtils.get().url(url);
-
-        for (String s :params.keySet()){
-            builder.addParams(s,params.get(s));
-        }
-        builder.build().execute(callback);
+    public  void get(String url, Map<String ,String> params,Object callback) {
+        net.get(url,params,callback);
     }
 }

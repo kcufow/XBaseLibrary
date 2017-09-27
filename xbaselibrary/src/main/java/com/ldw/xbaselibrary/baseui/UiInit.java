@@ -12,9 +12,19 @@ public interface UiInit {
      */
     void initView();
 
+    /**
+     * 数据加载 初始化时被调用
+     * @param savedInstanceState
+     */
+
     void initData(Bundle savedInstanceState);
 
     void setListener();
 
     int getLayoutId();
+
+    /**
+     * 做数据加载，可以手动调用
+     */
+    void delayLoadData();
 }

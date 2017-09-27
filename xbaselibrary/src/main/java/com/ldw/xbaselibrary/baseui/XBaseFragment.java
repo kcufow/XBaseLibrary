@@ -46,6 +46,15 @@ public abstract class XBaseFragment extends Fragment implements UiInit,UiOperati
         return rootView;
     }
 
+    @Override
+    public void initData(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public void delayLoadData() {
+
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

@@ -33,7 +33,15 @@ public abstract class XBaseActivity extends AppCompatActivity implements UiInit,
         setListener();
         initData(savedInstanceState);
     }
+    @Override
+    public void initData(Bundle savedInstanceState) {
 
+    }
+
+    @Override
+    public void delayLoadData() {
+
+    }
 
 
 
